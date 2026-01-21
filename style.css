@@ -1,0 +1,423 @@
+/* Variables de Color */
+:root {
+    --primary: #e67e22; /* Naranja casero/comida */
+    --dark: #2c3e50;
+    --light: #ecf0f1;
+    --whatsapp: #25d366;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f9f9f9;
+    color: var(--dark);
+    line-height: 1.6;
+}
+
+/* Navegación Fija */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary);
+}
+
+.logo span { color: var(--dark); }
+
+.nav-links {
+    list-style: none;
+    display: flex;
+}
+
+.nav-links li { margin-left: 20px; }
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--dark);
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+/* Menú Desplegable */
+.dropdown { position: relative; }
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background: white;
+    min-width: 160px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    border-radius: 4px;
+}
+.dropdown-content a {
+    padding: 12px 16px;
+    display: block;
+}
+.dropdown:hover .dropdown-content { display: block; }
+
+/* Hero Section (Slider de pantalla completa simulado) */
+.hero {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden; /* Oculta las fotos que no están activas */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+}
+
+.slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 300%; /* Tres fotos = 300% de ancho */
+    height: 100%;
+    display: flex;
+    animation: slideAnimation 15s infinite; /* 15 segundos en total */
+}
+
+.slide {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 10; /* Asegura que el texto esté por encima de las fotos */
+}
+
+/* Animación para que las fotos se muevan solas */
+@keyframes slideAnimation {
+    0% { left: 0%; }
+    30% { left: 0%; }   /* Pausa en foto 1 */
+    33% { left: -100%; } /* Transición a foto 2 */
+    63% { left: -100%; } /* Pausa en foto 2 */
+    66% { left: -200%; } /* Transición a foto 3 */
+    96% { left: -200%; } /* Pausa en foto 3 */
+    100% { left: 0%; }   /* Regresa al inicio */
+}
+
+/* Ajuste para el botón y la motito */
+.cta-button i {
+    margin-left: 10px;
+}
+
+/* Menú de Precios */
+.container { padding: 80px 10%; }
+.section-title { text-align: center; margin-bottom: 40px; font-size: 2.5rem; }
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.menu-category {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.menu-category h3 {
+    border-bottom: 2px solid var(--primary);
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.menu-category ul { list-style: none; }
+.menu-category li {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px dashed #ddd;
+}
+
+/* Botón WhatsApp Flotante */
+.whatsapp-float {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: var(--whatsapp);
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 30px;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    z-index: 1000;
+}
+
+footer {
+    background: var(--dark);
+    color: white;
+    padding: 40px;
+    text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .nav-links { display: none; } /* En móviles se simplifica */
+    .hero-content h1 { font-size: 2.2rem; }
+}
+/* Estilos para el carrito dinámico */
+.item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.item button {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 5px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.cart-summary {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: white;
+    padding: 15px 5%;
+    box-shadow: 0 -2px 15px rgba(0,0,0,0.2);
+    display: none; /* Se activa al agregar algo */
+    justify-content: space-between;
+    align-items: center;
+    z-index: 2000;
+}
+
+.cart-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.whatsapp-send {
+    background-color: var(--whatsapp);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+}
+.empanada-box {
+    flex-direction: column;
+    align-items: flex-start !important;
+    gap: 10px;
+}
+
+.empanada-box .info p {
+    font-size: 0.85rem;
+    color: #666;
+    margin-top: 4px;
+}
+
+.empanada-box .buttons {
+    display: flex;
+    gap: 8px;
+    width: 100%;
+    justify-content: flex-end;
+}
+
+.empanada-box button {
+    font-size: 0.8rem;
+    padding: 8px 15px;
+}
+.cta-button i {
+    margin-left: 10px; /* Separa la moto del texto */
+    font-size: 1.3rem; /* Hace el icono un poquito más grande */
+}
+
+/* Efecto opcional: que la moto se mueva un poquito al pasar el mouse */
+.cta-button:hover i {
+    transform: translateX(5px);
+    transition: 0.3s;
+}
+footer i {
+    color: var(--primary); /* Le da el color naranja a la motito */
+    margin-left: 5px;
+}
+
+.cta-button i {
+    margin-left: 10px; /* Separa la moto del texto en el botón */
+}
+/* Animación del Slider Automático */
+.hero {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.slider {
+    position: absolute;
+    display: flex;
+    width: 300%; /* Para las 3 fotos */
+    height: 100%;
+    animation: slideMotion 15s infinite;
+}
+
+.slide {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+}
+
+@keyframes slideMotion {
+    0% { transform: translateX(0); }
+    30% { transform: translateX(0); }
+    33% { transform: translateX(-33.33%); }
+    63% { transform: translateX(-33.33%); }
+    66% { transform: translateX(-66.66%); }
+    96% { transform: translateX(-66.66%); }
+    100% { transform: translateX(0); }
+}
+
+/* Fix para que el texto siempre sea legible */
+.hero-content {
+    position: relative;
+    z-index: 10;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+}
+
+/* Estilo para los iconos corregidos */
+.fa-motorcycle {
+    margin-left: 8px;
+    color: #fff;
+}
+
+footer .fa-motorcycle {
+    color: var(--primary);
+}
+.promo-container {
+    padding: 40px 10%;
+    background-color: #fff4e6; /* Fondo suave para resaltar */
+    display: flex;
+    justify-content: center;
+}
+
+.promo-card {
+    background: white;
+    border: 3px dashed var(--primary);
+    border-radius: 20px;
+    padding: 30px;
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.promo-badge {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--primary);
+    color: white;
+    padding: 5px 20px;
+    border-radius: 50px;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.promo-content h3 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    color: var(--dark);
+}
+
+.promo-price {
+    margin: 20px 0;
+}
+
+.old-price {
+    text-decoration: line-through;
+    color: #999;
+    font-size: 1.2rem;
+    margin-right: 10px;
+}
+
+.new-price {
+    color: #e67e22;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.add-promo {
+    background: #27ae60;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.add-promo:hover {
+    background: #219150;
+    transform: scale(1.05);
+}
+/* Mejora para el contenido central */
+.hero-content {
+    background: rgba(0, 0, 0, 0.4); /* Crea un leve recuadro oscuro transparente */
+    padding: 30px;
+    border-radius: 20px;
+    backdrop-filter: blur(3px); /* Desenfoca un poquito el fondo solo detrás del texto */
+    max-width: 90%;
+}
+
+.hero-content h1 {
+    font-size: 3rem;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.8); /* Sombra para resaltar las letras */
+    margin-bottom: 5px;
+}
+
+/* Espaciado para el estado del local */
+#estado-local {
+    margin-top: 20px;
+    display: inline-block;
+    padding: 5px 15px;
+    background: rgba(255,255,255,0.9); /* Fondo blanco para el cartel de cerrado */
+    border-radius: 50px;
+}

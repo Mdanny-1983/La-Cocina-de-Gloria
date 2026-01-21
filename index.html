@@ -1,0 +1,184 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Cocina de Gloria | Pedidos Online</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">La Cocina de <span>Gloria</span></div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li class="dropdown">
+                    <a href="#menu" class="dropbtn">Menú <i class="fas fa-caret-down"></i></a>
+                    <div class="dropdown-content">
+                        <a href="#pizzas">Pizzas</a>
+                        <a href="#hamburguesas">Hamburguesas</a>
+                        <a href="#minutas">Minutas</a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+  <section id="inicio" class="hero">
+    <div class="slider">
+        <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('foto1.png');"></div>
+        <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('foto2.png');"></div>
+        <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('foto3.png');"></div>
+    </div>
+
+    <div class="hero-content">
+        <h1>Sabor Casero y Calidad</h1>
+        <p>Martes a Domingo | 20:00 a 23:30 hs</p>
+        <a href="#menu" class="cta-button">Ver Menú y Pedir <i class="fas fa-motorcycle"></i></a>
+		<div id="estado-local" style="margin-top: 15px; font-weight: bold; font-size: 1.2rem;"></div>
+
+<script>
+    function revisarHorario() {
+        const ahora = new Date();
+        const hora = ahora.getHours();
+        const minutos = ahora.getMinutes();
+        const dia = ahora.getDay(); // 0 es domingo, 1 lunes...
+        
+        const tiempoActual = hora + minutos / 60;
+        const estaAbierto = (dia !== 1) && (tiempoActual >= 20 && tiempoActual <= 23.5);
+        
+        const etiqueta = document.getElementById('estado-local');
+        if (estaAbierto) {
+            etiqueta.innerHTML = "🟢 ¡Estamos Cocinando!";
+            etiqueta.style.color = "#2ecc71";
+        } else {
+            etiqueta.innerHTML = "🔴 Local Cerrado (Abrimos 20:00 hs)";
+            etiqueta.style.color = "#e74c3c";
+        }
+    }
+    revisarHorario();
+</script>
+    </div>
+</section>
+<section class="promo-container">
+    <div class="promo-card">
+        <div class="promo-badge">¡OFERTA DE HOY! 🌟</div>
+        <div class="promo-content">
+            <h3>Combo Familiar Gloria</h3>
+            <p>1 Pizza Muzzarella + 6 Empanadas de Carne</p>
+            <div class="promo-price">
+                <span class="old-price">$11.500</span>
+                <span class="new-price">$10.000</span>
+            </div>
+            <button class="add-promo" onclick="agregarAlPedido('Combo Familiar Gloria', 10000)">
+                Agregar Promo al Pedido
+            </button>
+        </div>
+    </div>
+</section>
+    <section id="menu" class="container">
+        <h2 class="section-title">Hacé tu pedido</h2>
+        
+        <div class="menu-grid">
+            <div class="menu-category" id="pizzas">
+                <h3>🍕 Pizzas</h3>
+                <div class="item">
+                    <span>Muzzarella</span> <b>$9000</b>
+                    <button onclick="agregarAlPedido('Muzzarella', 9000)">+</button>
+                </div>
+                <div class="item">
+                    <span>Especial</span> <b>$11000</b>
+                    <button onclick="agregarAlPedido('Especial', 11000)">+</button>
+                </div>
+            </div>
+
+            <div class="menu-category" id="hamburguesas">
+                <h3>🍔 Hamburguesas</h3>
+                <div class="item">
+                    <span>Simple</span> <b>$4500</b>
+                    <button onclick="agregarAlPedido('Burguer Simple', 4500)">+</button>
+                </div>
+                <div class="item">
+                    <span>Completa</span> <b>$6500</b>
+                    <button onclick="agregarAlPedido('Burguer Completa', 6500)">+</button>
+                </div>
+            </div>
+
+        <div class="menu-category" id="minutas">
+    <h3>🍴 Minutas y Empanadas</h3> <div class="item empanada-box">
+        <div class="info">
+            <strong>Empanadas de Carne</strong>
+            <p>Unidad: $1.100 | 1/2 Doc: $6.500 | Docena: $12.000</p>
+        </div>
+        <div class="buttons">
+            <button onclick="agregarAlPedido('1/2 Doc. Empanadas Carne', 6500)">+1/2</button>
+            <button onclick="agregarAlPedido('1 Doc. Empanadas Carne', 12000)">+Doc</button>
+        </div>
+    </div>
+
+    <div class="item empanada-box">
+        <div class="info">
+            <strong>Empanadas J&Q</strong>
+            <p>Unidad: $1.000 | 1/2 Doc: $6.000 | Docena: $11.000</p>
+        </div>
+        <div class="buttons">
+            <button onclick="agregarAlPedido('1/2 Doc. Empanadas J&Q', 6000)">+1/2</button>
+            <button onclick="agregarAlPedido('1 Doc. Empanadas J&Q', 11000)">+Doc</button>
+        </div>
+    </div>
+
+    <div class="item">
+        <span>Sándwich Milanesa Completo</span> <b>$5.500</b>
+        <button onclick="agregarAlPedido('Sándwich Milanesa Completo', 5500)">+</button>
+    </div>
+    
+    <div class="item">
+        <span>Papas Fritas Completas</span> <b>$3.800</b>
+        <button onclick="agregarAlPedido('Papas Fritas Completas', 3800)">+</button>
+    </div>
+</div>
+    </section>
+
+    <div id="cart-summary" class="cart-summary">
+        <div class="cart-info">
+            <span id="cart-count">Pedido: 0 items</span>
+            <strong id="cart-total">$0</strong>
+        </div>
+        <button class="whatsapp-send" onclick="enviarPedido()">
+            Enviar a Gloria <i class="fab fa-whatsapp"></i>
+        </button>
+    </div>
+
+    <footer id="contacto">
+    <p>Sarmiento 28, Basavilbaso | <strong>Delivery <i class="fas fa-motorcycle"></i></strong></p>
+</footer>
+
+    <script>
+        let pedido = [];
+        let total = 0;
+
+        function agregarAlPedido(nombre, precio) {
+            pedido.push(nombre);
+            total += precio;
+            document.getElementById('cart-count').innerText = `Pedido: ${pedido.length} items`;
+            document.getElementById('cart-total').innerText = `$${total}`;
+            document.getElementById('cart-summary').style.display = 'flex';
+        }
+
+        function enviarPedido() {
+            if (pedido.length === 0) return alert("Agregá algo al pedido primero");
+            
+            const mensaje = encodeURIComponent(
+                `*Hola Gloria! Quiero hacer un pedido:*\n\n` + 
+                `- ${pedido.join('\n- ')}\n\n` +
+                `*Total: $${total}*\n` +
+                `¿Me confirman el tiempo de entrega?`
+            );
+            
+            window.open(`https://wa.me/543445402447?text=${mensaje}`, '_blank');
+        }
+    </script>
+</body>
+</html>
